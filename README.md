@@ -12,8 +12,8 @@ Open file location in browser
 or click the links below
 
 Links;
-- Netlify; TODO
-- Selfhosting; TODO
+- Netlify; https://js-ajax-vilsim.netlify.app/
+- Selfhosting; https://ajax.vsim.xyz
 
 
 #### Handbaked by;
