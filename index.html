@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="user-scalable=0" />
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script  src="js/script.js"> </script>
+    <title> Pörssisähkö  </title>
+</head>
+    <body>
+        
+        <div class="topbar"><h1> ExchangeViewer </h1> _ ▄ x</div>
+        <div class="main">
+            <header>
+                <p> Electricity prices for the day at a glance. <br>
+                    See from the graph below, which hours you should avoid using appliances. <br><br>
+                    You can adjust the tresholds on the right. <br>
+                    Prices are displayed in cent per kilowatt hour. </p>
+            </header>
+
+            <article>
+                <h6> Adjust tresholds </h6>
+                <p> Heat the sauna below: 
+                    <span class="treshold"><span id="min" class="colorbox">min</span></span>
+                <br> Power devices off above: <span class="treshold">
+                    <span id="max" class="colorbox">max</span></span></p>
+            </article>
+
+            <aside>
+                <div class="user_input">
+                    <input class="adjust" placeholder="min" id="min_input"></input>
+                    <input class="adjust" placeholder="max" id="max_input"></input>
+                    <button id="treshold_button"> + </button>
+                </div>
+
+                <div class="price_box">
+                    <p> Date: <strong><span class="treshold" id="date">00/00</span></strong>
+                    <br> Average: <strong><span class="treshold" id="average_price">00</span></strong><br></p>
+                    <h2> Hours: </h2>
+                </div>           
+                <br>
+                
+                <div class="grid-container">
+                    <div class="grid-item">0</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">10</div>
+                    <div class="grid-item">11</div>
+                    <div class="grid-item">12</div>
+                    <div class="grid-item">13</div>
+                    <div class="grid-item">14</div>
+                    <div class="grid-item">15</div>
+                    <div class="grid-item">16</div>
+                    <div class="grid-item">17</div>
+                    <div class="grid-item">18</div>
+                    <div class="grid-item">19</div>
+                    <div class="grid-item">20</div>
+                    <div class="grid-item">21</div>
+                    <div class="grid-item">22</div>
+                    <div class="grid-item">23</div>
+                </div>
+                <br>
+
+                <div class="color_schema">
+                    <span id="min" class="colorbox">min</span>
+                    <span id="avg" class="colorbox">avg</span>
+                    <span id="max" class="colorbox">max</span>
+                </div>
+            </aside>
+        </div>
+    </body>
+</html>
