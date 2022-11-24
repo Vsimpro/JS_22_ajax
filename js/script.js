@@ -119,7 +119,6 @@ window.onload = function(){
 
   // pressing enter triggers the "+" button
   let input_fields = document.getElementsByClassName("adjust")
-  console.log(input_fields)
   for (let i = 0; i < input_fields.length; i++) {
   
     input_fields[i].addEventListener("keypress", function(event) {
