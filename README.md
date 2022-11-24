@@ -13,7 +13,7 @@ or click the links below
 
 Links;
 - Netlify; https://js-ajax-vilsim.netlify.app/
-- Selfhosting; https://ajax.vsim.xyz
+- Selfhosting; TODO
 
 
 #### Handbaked by;
