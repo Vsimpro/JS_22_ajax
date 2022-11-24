@@ -1,24 +1,28 @@
 // Global Variables
 var dataDate = "00/00";
-var httpRequest;
+var apiRequest;
 var min_treshold = 15
 var max_treshold = 30
 var todaysPrices = [];
 // Format, {hour : 0, price : '000,00'} price in mwh.
 
 
-API = "https://www.nordpoolgroup.com/api/marketdata/page/10?currency=eur"
+API = "https://api.vsim.xyz/api/nordpool"
 function loadData(url) {
     // Create and follow the API call.
-    httpRequest = new XMLHttpRequest();
-    httpRequest.open("GET", url);
-    httpRequest.onreadystatechange = function() {
+    apiRequest = new XMLHttpRequest();
+    apiRequest.open("GET", url);
+    
+    apiRequest.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8");
+    
+    
+    apiRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         getContents();
       }
     };
 
-    httpRequest.send();
+    apiRequest.send();
 }
 
 
@@ -27,9 +31,9 @@ function getContents() {
     let hour = 0;
 
     // Receive data from API 
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-      if (httpRequest.status === 200) {
-        data = JSON.parse(httpRequest.responseText);
+    if (apiRequest.readyState === XMLHttpRequest.DONE) {
+      if (apiRequest.status === 200) {
+        data = JSON.parse(apiRequest.responseText);
       
       } else {
         console.log("There was a problem with the request.");
