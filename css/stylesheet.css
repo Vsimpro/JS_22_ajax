@@ -228,10 +228,10 @@ p {
     }
 
     select {
-        width: 20%;
-        margin-left: -10%;
+        width: 30%;
+        margin-left: 0;
         margin-right: 5%;
-        float: right;
+        margin-top: -3%;
     }
 
     h1 {
@@ -281,6 +281,11 @@ p {
     .price_box {
         width: 35%;
         float: left;
+    }
+
+    .select-loc {
+        display: inline;
+        vertical-align: middle;
     }
 }
     
