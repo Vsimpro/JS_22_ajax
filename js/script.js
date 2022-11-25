@@ -1,5 +1,7 @@
 // Global Variables
 var apiRequest;
+var places = []
+var selection = "FI"
 var easter_egg = false;
 var dataDate = "00/00";
 var min_treshold = 15
@@ -57,9 +59,12 @@ function getContents() {
         let hourToPrice = {}
         let index = data["data"]["Rows"][i]["Columns"][j]
         let place = index["Name"]
+        if (places.includes(place) != true) {
+          places.push(place)
+        }
 
         // After finding Name and Index, find the ones that consider Finland (FI)
-        if (place == "FI" && hour < 24) {
+        if (place == selection && hour < 24) {
             hourToPrice.hour = hour;
             hourToPrice.price = index["Value"];
             todaysPrices[hour] = hourToPrice;
@@ -111,10 +116,72 @@ function updateContent() {
 
   document.getElementById("date").innerHTML = `${dataDate}`
   document.getElementById("average_price").innerHTML = `${avg}`
+
+  if (places.length > 0) {
+    let select = document.getElementById("location")
+    select.innerHTML = ""
+  }
+
+  let first_option = document.createElement("option")
+  first_option.value= "" 
+  first_option.disabled = true
+  first_option.selected = true
+  first_option.innerHTML = selection
+  document.getElementById("location").appendChild(first_option)
+
+
+  for (let i = 0; i < places.length; i++) {
+    let new_option = document.createElement("option");
+        new_option.value = places[i];
+        new_option.innerHTML = places[i];
+
+    document.getElementById("location").appendChild(new_option)
+    document.getElementById("place").innerHTML = selection;
+  }
 }
 
+function toggleEasterEgg()  {  
+  let color = "white"
+  let bg_color = "black"
+  let mainclass = "main"
 
-window.onload = function(){
+  if (easter_egg != true) {
+      
+    easter_egg = true;
+    color = "white"
+    mainclass = "x-main"
+    bg_color = "rgb(22,22,22)"
+
+  } else {
+    easter_egg = false;
+    color = "black"
+    bg_color = "white"
+    mainclass = "main"
+  }
+
+  let main = document.getElementsByClassName("main")[0] 
+          || document.getElementsByClassName("x-main")[0];
+  let h2 = document.getElementsByTagName("h2")[0];
+  let h6 = document.getElementsByTagName("h6")[0];
+  let divs = document.getElementsByTagName("header");
+  let paragraphs = document.getElementsByTagName("p");
+
+  h2.style.color = color
+  h6.style.color = color
+  main.style.backgroundColor = bg_color 
+  main.className = mainclass
+  document.body.style.backgroundColor = bg_color 
+
+  for (let i = 0; i < divs.length; i++) {
+    divs[i].style.backgroundColor = bg_color 
+  }
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    paragraphs[i].style.color = color
+  }
+}
+
+window.onload = function() {
   // Get the data upon loading the window.
   loadData(`${API}`)
 
@@ -129,9 +196,9 @@ window.onload = function(){
       document.getElementById("treshold_button").click();
       }
     })
-  }
+  } 
 
-  // Add functionalities to the button.
+  /* Add functionalities to the buttons. */
   document.getElementById("treshold_button").addEventListener("click", function() {
     min_treshold = parseInt(document.getElementById("min_input").value)
     max_treshold = parseInt(document.getElementById("max_input").value)
@@ -139,47 +206,16 @@ window.onload = function(){
     updateContent();
   })
 
+  // Add functionalities to the button.
+  document.getElementById("location").onchange = function() {
+    let new_place = document.getElementById("location").value
+    selection = new_place;
+    loadData(`${API}`)
+  }
+
   // Add easter egg
   document.getElementById("top_button").addEventListener("click", function() {
-    
-    let color = "white"
-    let bg_color = "black"
-    let mainclass = "main"
+    toggleEasterEgg();
 
-    if (easter_egg != true) {
-        
-      easter_egg = true;
-      color = "white"
-      mainclass = "x-main"
-      bg_color = "rgb(22,22,22)"
-
-    } else {
-      easter_egg = false;
-      color = "black"
-      bg_color = "white"
-      mainclass = "main"
-    }
-
-    let main = document.getElementsByClassName("main")[0] 
-            || document.getElementsByClassName("x-main")[0];
-    let h2 = document.getElementsByTagName("h2")[0];
-    let h6 = document.getElementsByTagName("h6")[0];
-    let divs = document.getElementsByTagName("header");
-    let paragraphs = document.getElementsByTagName("p");
-
-    h2.style.color = color
-    h6.style.color = color
-    main.style.backgroundColor = bg_color 
-    main.className = mainclass
-    document.body.style.backgroundColor = bg_color 
-
-    for (let i = 0; i < divs.length; i++) {
-      divs[i].style.backgroundColor = bg_color 
-    }
-
-    for (let i = 0; i < paragraphs.length; i++) {
-      paragraphs[i].style.color = color
-    }
   })
-
-};
+}

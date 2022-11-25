@@ -33,10 +33,17 @@ article {
 aside {
     width: 100%;
     float: left;
+    padding-top: 5%;
 }
 
 button { 
     width: 30%;
+    font-family: IBM;
+}
+
+#update {
+    width: 10%;
+    margin-top: -50%;
 }
 
 .grid-container {
@@ -84,6 +91,12 @@ header {
     width: 99%;
     float: left;
     padding-top: -10%;
+}
+
+select {
+    width: 25%;
+    float: left;
+    font-family: IBM;
 }
 
 .main {
@@ -195,22 +208,40 @@ p {
     }
 
     body {
+        width: 100%;
         margin-top: 5%;
+        margin-left: 2%;
     }
 
     article {
+        padding-top: 10%;
         width: 80%;
         float: left;
+    }
+
+    aside {
+        padding-top: 0%;
     }
 
     button { 
         width: 30%;
     }
 
+    select {
+        width: 20%;
+        margin-left: -10%;
+        margin-right: 5%;
+        float: right;
+    }
+
     h1 {
         width: 33%;
         font-weight: x-small;
         box-shadow: 4px 4px rgb(66, 66, 66);
+    }
+
+    h2 {
+        width: 120%;
     }
 
     .x-main {
@@ -250,10 +281,6 @@ p {
     .price_box {
         width: 35%;
         float: left;
-    }
-
-    #top_button {
-        padding-bottom: 2%;
     }
 }
     

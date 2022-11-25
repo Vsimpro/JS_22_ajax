@@ -11,10 +11,18 @@
         <div id="main" class="main">
             <header>
                 <p> Electricity prices for the day at a glance. <br>
-                    See from the graph below, which hours you should avoid using appliances. <br><br>
-                    You can adjust the tresholds on the right. <br>
+                    See from the graph below, on which hours you should avoid using appliances. <br><br>
+                    You can adjust the tresholds to your liking. <br>
                     Prices are displayed in cent per kilowatt hour. </p>
             </header>
+
+            <p class="select-loc"> Select your location; <br> 
+                <select name="location" id="location">
+                    <option value="" disabled selected> </option>
+                    <option value="Fi">Fi</option>
+                </select> 
+            </p>
+                
 
             <article>
                 <h6> Adjust tresholds </h6>
@@ -23,7 +31,7 @@
                 <br> Power devices off above: <span class="treshold">
                     <span id="max" class="colorbox">max</span></span></p>
             </article>
-
+        
             <aside>
                 <div class="user_input">
                     <input class="adjust" placeholder="min" id="min_input"></input>
@@ -34,7 +42,7 @@
                 <div class="price_box">
                     <p> Date: <strong><span class="treshold" id="date">00/00</span></strong>
                     <br> Average: <strong><span class="treshold" id="average_price">00</span></strong><br></p>
-                    <h2> Hours: </h2>
+                    <h2> Hours for: <span id="place">Fi</span></h2>
                 </div>           
                 <br>
                 
