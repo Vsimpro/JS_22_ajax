@@ -1,6 +1,7 @@
 // Global Variables
-var dataDate = "00/00";
 var apiRequest;
+var easter_egg = false;
+var dataDate = "00/00";
 var min_treshold = 15
 var max_treshold = 30
 var todaysPrices = [];
@@ -137,4 +138,48 @@ window.onload = function(){
   
     updateContent();
   })
+
+  // Add easter egg
+  document.getElementById("top_button").addEventListener("click", function() {
+    
+    let color = "white"
+    let bg_color = "black"
+    let mainclass = "main"
+
+    if (easter_egg != true) {
+        
+      easter_egg = true;
+      color = "white"
+      mainclass = "x-main"
+      bg_color = "rgb(22,22,22)"
+
+    } else {
+      easter_egg = false;
+      color = "black"
+      bg_color = "white"
+      mainclass = "main"
+    }
+
+    let main = document.getElementsByClassName("main")[0] 
+            || document.getElementsByClassName("x-main")[0];
+    let h2 = document.getElementsByTagName("h2")[0];
+    let h6 = document.getElementsByTagName("h6")[0];
+    let divs = document.getElementsByTagName("header");
+    let paragraphs = document.getElementsByTagName("p");
+
+    h2.style.color = color
+    h6.style.color = color
+    main.style.backgroundColor = bg_color 
+    main.className = mainclass
+    document.body.style.backgroundColor = bg_color 
+
+    for (let i = 0; i < divs.length; i++) {
+      divs[i].style.backgroundColor = bg_color 
+    }
+
+    for (let i = 0; i < paragraphs.length; i++) {
+      paragraphs[i].style.color = color
+    }
+  })
+
 };
