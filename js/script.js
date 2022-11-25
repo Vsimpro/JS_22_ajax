@@ -6,11 +6,12 @@ var easter_egg = false;
 var dataDate = "00/00";
 var min_treshold = 15
 var max_treshold = 30
-var todaysPrices = [];
-// Format, {hour : 0, price : '000,00'} price in mwh.
+var todaysPrices = []; // Format, {hour : 0, price : '000,00'} price in mwh.
 
+/* As nordpool is finnicky with their cors policy,
+   I've had to create my own proxy for it.      */
+const API = "https://api.vsim.xyz/api/nordpool"
 
-API = "https://api.vsim.xyz/api/nordpool"
 function loadData(url) {
     // Create and follow the API call.
     apiRequest = new XMLHttpRequest();
@@ -49,7 +50,7 @@ function getContents() {
       return;
     }
 
-    // Parse received data.
+    /* Parse received data. */
     // Determine row & colum lengths
     let row_length =     data["data"]["Rows"].length
     let columns_length = data["data"]["Rows"][1]["Columns"].length   
@@ -85,6 +86,7 @@ function getContents() {
 
 
 function updateContent() {
+  /* Update all the dynamic components */
   let avg = 00;
   let total = 0;
   let grid = document.getElementsByClassName("grid-item")
@@ -117,6 +119,8 @@ function updateContent() {
   document.getElementById("date").innerHTML = `${dataDate}`
   document.getElementById("average_price").innerHTML = `${avg}`
 
+  /* Update "options" with fresh options. */
+  // If no places are given, remain with the default option.
   if (places.length > 0) {
     let select = document.getElementById("location")
     select.innerHTML = ""
@@ -145,6 +149,7 @@ function toggleEasterEgg()  {
   let bg_color = "black"
   let mainclass = "main"
 
+  // Toggle for easter egg
   if (easter_egg != true) {
       
     easter_egg = true;
@@ -159,13 +164,16 @@ function toggleEasterEgg()  {
     mainclass = "main"
   }
 
+  // All of the elements that are being changed
   let main = document.getElementsByClassName("main")[0] 
           || document.getElementsByClassName("x-main")[0];
+
   let h2 = document.getElementsByTagName("h2")[0];
   let h6 = document.getElementsByTagName("h6")[0];
   let divs = document.getElementsByTagName("header");
   let paragraphs = document.getElementsByTagName("p");
 
+  // Carry out change
   h2.style.color = color
   h6.style.color = color
   main.style.backgroundColor = bg_color 
@@ -206,14 +214,14 @@ window.onload = function() {
     updateContent();
   })
 
-  // Add functionalities to the button.
+  // dropdown menu triggers a new api call.
   document.getElementById("location").onchange = function() {
     let new_place = document.getElementById("location").value
     selection = new_place;
     loadData(`${API}`)
   }
 
-  // Add easter egg
+  // Add easter egg :)
   document.getElementById("top_button").addEventListener("click", function() {
     toggleEasterEgg();
 
